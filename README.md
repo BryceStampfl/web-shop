@@ -2,11 +2,11 @@
 
 # A fullstack web shopping application
 
-#Security: 
+Security: 
   Spring security and JWT token authentication/authorization
 
-#Backend
+Backend:
   Springboot REST API
   
-#Frontend
+Frontend:
 React with redux and react-bootstrap for styling
