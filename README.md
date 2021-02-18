@@ -3,7 +3,7 @@
 # A fullstack web shopping application
 
 Security: 
-  Spring security and JWT token authentication/authorization
+  Spring security and JWT authentication/authorization
 
 Backend:
   Springboot REST API
