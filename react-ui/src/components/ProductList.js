@@ -10,20 +10,18 @@ const ProductList = () => {
     let numberRendered = 3;
 
     const renderedProducts = products.map(item => (
-       <ProductItem product={item} />
+            <ProductItem product={item} />
     ))
 
-console.log(renderedProducts);
-
-return (
-    <div id="ProductList">
-        <Row>
-            <Col>
-                {renderedProducts}
-            </Col>
-        </Row>
-    </div>
-)
+    return (
+        <div id="ProductList">
+            <Row>
+                <Col>
+                    {renderedProducts}
+                </Col>
+            </Row>
+        </div>
+    )
 }
 
 export default ProductList;

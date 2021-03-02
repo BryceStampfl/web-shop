@@ -1,5 +1,6 @@
 import React from 'react';
-import {productSlice} from '../_reducers/productsSlice';
+
+import { productSlice } from '../_reducers/productsSlice';
 import { Card, Col, Row } from 'react-bootstrap'
 
 const ProductItem = (props) => {
@@ -20,9 +21,6 @@ const ProductItem = (props) => {
                         <Card.Subtitle>{props.product.price}</Card.Subtitle>
                     </Col>
                 </Row>
-
-
-
             </Card.Body>
         </Card>
     )
