@@ -4,20 +4,22 @@ import ProductItem from "./ProductItem"
 
 const ProductList = () => {
 
+    const products = useSelector(state => state.products)
+    let numberRendered = 3;
 
-return(
-    <div>
-        <Row>
-            <Col>
-            <ProductItem />
-            <ProductItem />
-            <ProductItem />
-            <ProductItem />
-            </Col>
-        </Row>
-    </div>
-)
+    const renderedProducts = products.map(item => (
+            <ProductItem product={item} />
+    ))
 
+    return (
+        <div id="ProductList">
+            <Row>
+                <Col>
+                    {renderedProducts}
+                </Col>
+            </Row>
+        </div>
+    )
 }
 
 export default ProductList;
