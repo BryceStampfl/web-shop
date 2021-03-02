@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { productSlice } from '../_reducers/productsSlice';
 import { Card, Col, Row } from 'react-bootstrap'
 
@@ -11,6 +12,7 @@ const ProductItem = (props) => {
                 <Row>
                     <Col md={4}>
                         <Card.Img variant="float" src={process.env.PUBLIC_URL + 'placeholder.png'} />
+
                     </Col>
                     <Col md={8}>
                         <Card.Title>{props.product.title}</Card.Title>

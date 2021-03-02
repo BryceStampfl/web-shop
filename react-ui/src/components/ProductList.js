@@ -1,6 +1,8 @@
 import React from 'react';
-import {Row, Col} from 'react-bootstrap'
+import { useSelector } from 'react-redux'
+import { Row, Col } from 'react-bootstrap'
 import ProductItem from "./ProductItem"
+
 
 const ProductList = () => {
 
