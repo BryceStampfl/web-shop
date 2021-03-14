@@ -1,5 +1,3 @@
-# Still under construction :)
-
 # A fullstack web shopping application
 
 Security: 
