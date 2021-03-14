@@ -1,22 +1,47 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import axios from 'axios'
+import { act } from 'react-dom/test-utils'
+
+const apiUrl = 'localhost:8080'
 
 
-const initialProductsState =  [  
-    {name: '1', price: 10, description: 'testDescrip1' },
-    {name: '2', price: 20, description: 'testDescrip2' },
-    {name: '3', price: 30, description: 'testDescrip3' },
-    {name: '4', price: 40, description: 'testDescrip4' }]
- 
+export const fetchProducts = createAsyncThunk(
+    'products/fetchProducts',
+    async () => {
+        console.log("Starting get for all products")
+        const response = await axios.get(`http://localhost:8080/api/products/`)
+        console.log("Recieved get for all products")
+        console.log(response.data)
+        return response.data;
+    }
+)
 
-export const productsSlice = createSlice({
+const productsSlice = createSlice({
     name: 'products',
-    initialState: initialProductsState,
+    initialState: [],
     reducers: {
         addProduct: (state, action) => {
             state.push(action.payload)
         },
+        selectProductById: (state, action) => {
+            state.find(product => product.id === action.payload)
+        },
+        selectAllProducts: state => state.products
+    },
+    extraReducers: {
+        [fetchProducts.fulfilled]: (state, action) => {
+            action.payload.map((product) => {
+                state.push(product)
+            })
+        },
+        [fetchProducts.pending]: () => {
+        },
+        [fetchProducts.rejected]: (state, action) => {
+        }
     }
 })
+
+
 
 export const { addProduct } = productsSlice.actions;
 

@@ -6,27 +6,23 @@ import reportWebVitals from './reportWebVitals';
 
 import { Provider } from 'react-redux'
 import store from './store'
+import { fetchProducts } from './_reducers/productsSlice'
 
-const render = () => {
-  ReactDOM.render(
-    <React.StrictMode>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </React.StrictMode>,
-    document.getElementById('root')
-  );
-};
+
+store.dispatch(fetchProducts())
+
+ReactDOM.render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
 
 
-render();
-
-if (module.hot) {
-  module.hot.accept('./App', () => {
-    render();
-  });
-}
