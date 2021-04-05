@@ -1,59 +1,85 @@
 package bs.webshop.security;
 
-import com.auth0.jwt.JWT;
 import bs.webshop.entity.User;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import bs.webshop.repositories.UserRepository;
+import bs.webshop.services.CustomUserDetailsService;
+import java.io.IOException;
+import java.util.Collections;
+import java.util.Optional;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
+import javax.swing.text.html.Option;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.util.StringUtils;
+import org.springframework.web.filter.OncePerRequestFilter;
 
 
 import static bs.webshop.security.SecurityConstants.*;
-import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
 
 
-public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
-    private AuthenticationManager authenticationManager;
+public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    public JwtAuthenticationFilter(AuthenticationManager authenticationManager) {
-        this.authenticationManager = authenticationManager;
-    }
+    @Autowired
+    private JwtTokenProvider tokenProvider;
+
+    @Autowired
+    private CustomUserDetailsService customUserDetailsService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
-    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
+    protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
+                                    FilterChain filterChain) throws ServletException, IOException {
+
         try {
-            User creds = new ObjectMapper().readValue(request.getInputStream(), User.class);
 
-            return authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(
-                            creds.getUsername(),
-                            creds.getPassword(),
-                            new ArrayList<>())
-            );
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            String jwt = getJWTFromRequest(httpServletRequest);
+
+            if(StringUtils.hasText(jwt)&& tokenProvider.validateToken(jwt)){
+
+               Long userId = tokenProvider.getUserIdFromJWT(jwt);
+               //Have to cast to Optional since for JpaRepository.getOne(userID) returns a proxy and h2 is lazyinitializing
+               User user = userRepository.findById(userId).get();
+
+               // User user = userRepository.getOne(userId);
+                UserDetails userDetails = customUserDetailsService.loadUserByUsername(user.getUsername());
+
+                //User userDetails = customUserDetailsService.loadUserByUsername(userId);
+
+                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+                        userDetails, null, Collections.emptyList());
+
+                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(httpServletRequest));
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+
+            }
+
+        }catch (Exception ex){
+            logger.error("Could not set user authentication in security context", ex);
         }
+
+        filterChain.doFilter(httpServletRequest, httpServletResponse);
+
     }
 
-    @Override
-    protected void successfulAuthentication(HttpServletRequest request,
-                                            HttpServletResponse response,
-                                            FilterChain chain,
-                                            Authentication authResult) throws IOException, ServletException {
-        String token = JWT.create()
-                .withSubject(((User) authResult.getPrincipal()).getUsername())
-                .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
-                .sign(HMAC512(SECRET.getBytes()));
-        response.addHeader(HEADER_STRING, TOKEN_PREFIX + token);
+
+
+    private String getJWTFromRequest(HttpServletRequest request){
+        String bearerToken = request.getHeader(HEADER_STRING);
+
+        if(StringUtils.hasText(bearerToken)&&bearerToken.startsWith(TOKEN_PREFIX)){
+            return bearerToken.substring(7, bearerToken.length());
+        }
+
+        return null;
     }
 }

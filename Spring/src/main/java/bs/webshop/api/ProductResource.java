@@ -8,16 +8,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/products")
 public class ProductResource {
 
-    @Autowired
-    private ProductRepository productRepository;
-
+    private final ProductRepository productRepository;
 
     public ProductResource(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
+
 
     @GetMapping("/")
     public List<Product> findAll() {
@@ -26,18 +26,18 @@ public class ProductResource {
 
 
     @PostMapping("/")
-    Product newProduct(@RequestBody Product newProduct) {
+    public Product newProduct(@RequestBody Product newProduct) {
         return productRepository.save(newProduct);
     }
 
     @GetMapping("{id}")
-    Product findById(@PathVariable Long id) throws Exception {
+    public Product findById(@PathVariable Long id) throws Exception {
         return productRepository.findById(id)
                 .orElseThrow(() -> new Exception("Product not found"));
     }
 
     @PutMapping("{id}")
-    Product replaceProduct(@RequestBody Product newProduct, @PathVariable Long id) {
+    public Product replaceProduct(@RequestBody Product newProduct, @PathVariable Long id) {
         return productRepository.findById(id)
                 .map(product -> {
                     product.setName(newProduct.getName());
@@ -52,7 +52,7 @@ public class ProductResource {
     }
 
     @DeleteMapping("{id}")
-    void deleteProduct(@PathVariable Long id) {
+    public void deleteProduct(@PathVariable Long id) {
         productRepository.deleteById(id);
     }
 
