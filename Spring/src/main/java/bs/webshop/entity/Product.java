@@ -16,13 +16,10 @@ public class Product {
     private String description;
   //  private String[] imageUrl;
 
-    public Product(){
 
-    }
+    public Product(){}
 
-
-    public Product(long id, String title, double price, String description) {
-        this.id = id;
+    public Product(String title, double price, String description) {
         this.title = title;
         this.price = price;
         this.description = description;

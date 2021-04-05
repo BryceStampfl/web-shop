@@ -9,20 +9,17 @@ export const DropDownMenu = () => {
     const [menuOpen, setMenuOpen] = useState(false)
 
     const dropDownMenuItemList = menuItems.map(item => (
-        <DropDownMenuItem item={item} />
+        <DropDownMenuItem key={item} item={item} />
     ))   
-    
-    useEffect (() => {
-        console.log(menuOpen)
-    });
     
 
     return (
         <NavDropdown
+        title="Dropdown"
         onMouseEnter = {() => setMenuOpen(true)}
         onMouseLeave = {() => setMenuOpen(false)}
         show= {menuOpen}
-        alignRight="true"
+        alignRight={true}
         >
             {dropDownMenuItemList}
         </NavDropdown>

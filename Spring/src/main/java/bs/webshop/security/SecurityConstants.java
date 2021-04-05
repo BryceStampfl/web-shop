@@ -1,8 +1,10 @@
 package bs.webshop.security;
 
 public class SecurityConstants {
-    public static final String SIGN_UP_URL = "/api/users/**";
-    public static final String H2_URL = "h2-console/**";
+    public static final String REGISTER_URL = "/api/users/register";
+    public static final String LOGIN_URL = "/api/users/login";
+
+    public static final String H2_URLS = "/h2-console/**";
 
     public static final String SECRET ="SecretKeyToGenJWTs";
     public static final String TOKEN_PREFIX= "Bearer ";

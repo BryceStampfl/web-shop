@@ -20,7 +20,13 @@ public class User implements UserDetails {
     private String username;
     private String password;
 
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
+
+    public User(){}
 
     public long getId() {
         return id;
@@ -41,7 +47,8 @@ public class User implements UserDetails {
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
+
 
     /*
     UserDetails interface methods
@@ -59,8 +66,8 @@ public class User implements UserDetails {
         return true;
     }
 
-    @Override
     @JsonIgnore
+    @Override
     public boolean isAccountNonLocked() {
         return true;
     }
