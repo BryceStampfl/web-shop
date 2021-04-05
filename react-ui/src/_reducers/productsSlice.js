@@ -1,17 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
-import { act } from 'react-dom/test-utils'
 
-const apiUrl = 'localhost:8080'
+const apiUrl = 'http://localhost:8080/api/products/'
 
 
 export const fetchProducts = createAsyncThunk(
     'products/fetchProducts',
     async () => {
-        console.log("Starting get for all products")
-        const response = await axios.get(`http://localhost:8080/api/products/`)
-        console.log("Recieved get for all products")
-        console.log(response.data)
+        const response = await axios.get(`${apiUrl}`)
         return response.data;
     }
 )
@@ -33,10 +29,6 @@ const productsSlice = createSlice({
             action.payload.map((product) => {
                 state.push(product)
             })
-        },
-        [fetchProducts.pending]: () => {
-        },
-        [fetchProducts.rejected]: (state, action) => {
         }
     }
 })

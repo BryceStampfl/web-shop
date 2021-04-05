@@ -1,22 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Button } from 'react-bootstrap'
 
-import createNewUser from '../../_reducers/securitySlice'
+import { Form, Button } from 'react-bootstrap'
+import { loginUser } from '../../_reducers/usersSlice'
 import { useDispatch } from 'react-redux'
 
-
-
-
-const Register = () => {
+const Login = () => {
     const [loginData, setLoginData] = useState({ login: '', password: '' });
 
     const dispatch = useDispatch();
 
 
 
-    const handleSubmit = (data) => {
-        console.log(`${loginData.login} ${loginData.password}`)
-        dispatch(createNewUser({
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        dispatch(loginUser({
             username: loginData.login,
             password: loginData.password
         }))
@@ -59,5 +56,4 @@ const Register = () => {
     )
 }
 
-
-export default Register;
+export default Login;

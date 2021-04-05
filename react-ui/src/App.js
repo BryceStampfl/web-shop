@@ -5,12 +5,14 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "./components/header/Header"
 import store from './store';
 import jwt_decode from "jwt-decode";
-import { setCurrentUser, logout } from './_reducers/securitySlice'
-import Landing from './components/Landing/Landing';
+import { setCurrentUser, logout } from './_reducers/usersSlice'
+import Landing from './components/landing/Landing';
 import SecuredRoute from './_securityUtils/SecuredRoute';
-import Dashboard from './components/Dashboard/Dashboard';
+import Dashboard from './components/dashboard/Dashboard';
 
 import setJwtToken from "./_securityUtils/setJwtToken"
+import Login from './components/landing/Login';
+import Register from './components/landing/Register';
 
 const jwtToken = localStorage.jwtToken
 
@@ -31,13 +33,16 @@ function App() {
   return (
     <div className="App">
       <Router>
+
         <Header />
+
         <Container fluid>
 
           {
             //public routes
           }
-          <Route exact path="/" component={Landing} />
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/" component={Login} />
 
 
           {

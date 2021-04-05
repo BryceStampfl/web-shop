@@ -1,4 +1,4 @@
-package bs.webshop.controller;
+package bs.webshop.api;
 
 import bs.webshop.entity.Product;
 import bs.webshop.repositories.ProductRepository;
@@ -7,16 +7,15 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/products")
-public class ProductController {
+public class ProductResource {
 
     @Autowired
     private ProductRepository productRepository;
 
 
-    public ProductController(ProductRepository productRepository) {
+    public ProductResource(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
 

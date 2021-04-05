@@ -9,7 +9,7 @@ const ProductList = () => {
     const products = useSelector(state => state.products)
 
     const renderedProducts = products.map(item => (
-        <ProductItem product={item} />
+        <ProductItem key={item.title} product={item} />
     ))
 
 
