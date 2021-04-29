@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux'
 
 import { Form, Button } from 'react-bootstrap'
 import { loginUser } from '../../_reducers/usersSlice'
 import { useDispatch } from 'react-redux'
 
+import { useHistory } from 'react-router';
+
+
 const Login = () => {
+
     const [loginData, setLoginData] = useState({ login: '', password: '' });
-
     const dispatch = useDispatch();
-
+    const history = useHistory();
 
 
     const handleSubmit = (e) => {
@@ -16,8 +20,7 @@ const Login = () => {
         dispatch(loginUser({
             username: loginData.login,
             password: loginData.password
-        }))
-
+        }, history))
     }
 
     const handleLoginInputChange = (event) => {
@@ -36,6 +39,8 @@ const Login = () => {
         }));
     };
 
+
+    
 
     return (
         <div>
