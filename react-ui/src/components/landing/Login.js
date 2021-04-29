@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import { Form, Button } from 'react-bootstrap'
-import { useDispatch } from 'react-redux'
-import { useHistory } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux'
+import { Redirect, useHistory } from 'react-router';
 import { loginUser } from '../../_reducers/usersSlice'
 
-import {Container} from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 
 const Login = () => {
 
     const [loginData, setLoginData] = useState({ login: '', password: '' });
     const dispatch = useDispatch();
     const history = useHistory();
+    const userLoggedIn = useSelector(state => state.users.validToken)
 
 
     const handleSubmit = (e) => {
@@ -38,6 +39,14 @@ const Login = () => {
         }));
     };
 
+
+
+
+    if (userLoggedIn) {
+        return (
+            <Redirect to="/app" />
+        )
+    }
 
 
 
