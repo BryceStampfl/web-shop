@@ -15,12 +15,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 
-
-
 import static bs.webshop.security.SecurityConstants.H2_URLS;
 import static bs.webshop.security.SecurityConstants.REGISTER_URL;
 import static bs.webshop.security.SecurityConstants.LOGIN_URL;
-
 
 
 @EnableWebSecurity
@@ -56,7 +53,6 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     }
 
 
-
     @Override
     @Bean(BeanIds.AUTHENTICATION_MANAGER)
     protected AuthenticationManager authenticationManager() throws Exception {
@@ -89,7 +85,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .antMatchers(LOGIN_URL).permitAll()
                 .antMatchers(H2_URLS).permitAll()
                 .antMatchers("/h2-console/**").permitAll()
-                .antMatchers("/api/products/").permitAll()
+                .antMatchers("/api/products/**").permitAll()
                 .anyRequest().authenticated();
 
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
@@ -99,3 +95,4 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 
 
 }
+

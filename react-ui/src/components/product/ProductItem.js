@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { productSlice } from '../_reducers/productsSlice';
 import { Card, Col, Row } from 'react-bootstrap'
 
 const ProductItem = (props) => {
