@@ -1,7 +1,7 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
-export const DropDownMenuItem = (props) => {
+const DropDownMenuItem = (props) => {
     return (
         //<NavDropdown.Item href="/home">{props.item}</NavDropdown.Item>
         <Link to="/home"> Home </Link>
