@@ -7,13 +7,10 @@ const Landing = () => {
 
 
     return (
-      
-        <div>
-            <h2>Login Page</h2>
-            <Login />
 
-        <h2>Register</h2>
-        <Register />
+        <div>
+            <br />
+            <Login />
         </div>
     );
 

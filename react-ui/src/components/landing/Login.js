@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux'
 
 import { Form, Button } from 'react-bootstrap'
-import { loginUser } from '../../_reducers/usersSlice'
 import { useDispatch } from 'react-redux'
-
 import { useHistory } from 'react-router';
+import { loginUser } from '../../_reducers/usersSlice'
 
+import {Container} from 'react-bootstrap'
 
 const Login = () => {
 
@@ -40,23 +39,25 @@ const Login = () => {
     };
 
 
-    
+
 
     return (
         <div>
-            <Form>
-                <Form.Group>
-                    <Form.Label>Login</Form.Label>
-                    <Form.Control onChange={handleLoginInputChange} placeholder="Enter login"></Form.Control>
-                </Form.Group>
+            <Container>
+                <Form>
+                    <Form.Group>
+                        <Form.Label>Login</Form.Label>
+                        <Form.Control onChange={handleLoginInputChange} placeholder="Enter login"></Form.Control>
+                    </Form.Group>
 
-                <Form.Group>
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control onChange={handlePasswordInputChange} placeholder="Enter password"></Form.Control>
-                </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control onChange={handlePasswordInputChange} placeholder="Enter password"></Form.Control>
+                    </Form.Group>
 
-                <Button onClick={handleSubmit} variant="primary">Submit</Button>
-            </Form>
+                    <Button onClick={handleSubmit} variant="primary">Submit</Button>
+                </Form>
+            </Container>
         </div>
     )
 }
