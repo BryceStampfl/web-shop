@@ -1,12 +1,14 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import setJWTToken from '../_securityUtils/setJwtToken'
+import setJWTToken from '../_utils/setJwtToken'
 import axios from 'axios'
+
 
 const apiUrl = 'http://localhost:8080/api/users'
 
 
+
 const initialState = {
-    validToken: false,
+    validToken: null,
     user: {}
 }
 
@@ -35,14 +37,15 @@ const usersSlice = createSlice({
         },
          logout: (state, action) => {
              state = initialState;
-         }
+         },
     },
     extraReducers: {
         [registerUser.fulfilled]: (state, action) => {
             console.log(`User registered fulfilled!`)
+
         },
         [registerUser.rejected]: (state, action) => {
-            console.log(`User registered! rejected`)
+            console.log(`User not registered: rejected`)
         },
         [loginUser.fulfilled]: (state, response) => {
             const token = response.payload.token
@@ -50,6 +53,7 @@ const usersSlice = createSlice({
             localStorage.setItem("jwtToken", token);
            // console.log(`Jwt token: ${token}`)
             setJWTToken(token);
+            console.log("Token set")
             state.validToken = response.payload.successful
             state.user = response.meta.arg.username
             // do jwt_decode
