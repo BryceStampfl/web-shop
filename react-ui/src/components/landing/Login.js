@@ -12,7 +12,7 @@ const Login = () => {
     const [loginData, setLoginData] = useState({ login: '', password: '' });
     const dispatch = useDispatch();
     const history = useHistory();
-    const userLoggedIn = useSelector(state => state.users.validToken)
+    const userLoggedIn = useSelector(state => state.reducer.users.validToken)
 
 
     const handleSubmit = (e) => {
@@ -47,8 +47,6 @@ const Login = () => {
             <Redirect to="/app" />
         )
     }
-
-
 
     return (
         <div>

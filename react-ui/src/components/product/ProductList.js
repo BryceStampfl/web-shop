@@ -6,7 +6,7 @@ import ProductItem from "./ProductItem"
 
 const ProductList = () => {
 
-    const products = useSelector(state => state.products)
+    const products = useSelector(state => state.reducer.products)
 
     const renderedProducts = products.map(item => (
         <ProductItem key={item.title} product={item} />

@@ -5,8 +5,6 @@ import axios from 'axios'
 
 const apiUrl = 'http://localhost:8080/api/users'
 
-
-
 const initialState = {
     validToken: null,
     user: {}
@@ -22,7 +20,7 @@ export const registerUser = createAsyncThunk(
 
 export const loginUser = createAsyncThunk(
     'users/loginUser',
-    async(loginData) => {
+    async (loginData) => {
         const response = await axios.post(`${apiUrl}/login`, loginData)
         return response.data
     }
@@ -35,9 +33,9 @@ const usersSlice = createSlice({
         setCurrentUser: (state, action) => {
             state = action.payload
         },
-         logout: (state, action) => {
-             state = initialState;
-         },
+        logout: (state, action) => {
+            state = initialState;
+        },
     },
     extraReducers: {
         [registerUser.fulfilled]: (state, action) => {
@@ -51,7 +49,7 @@ const usersSlice = createSlice({
             const token = response.payload.token
 
             localStorage.setItem("jwtToken", token);
-           // console.log(`Jwt token: ${token}`)
+            // console.log(`Jwt token: ${token}`)
             setJWTToken(token);
             console.log("Token set")
             state.validToken = response.payload.successful
@@ -64,6 +62,6 @@ const usersSlice = createSlice({
 
 
 
-export const {setCurrentUser, logout} = usersSlice.actions;
+export const { setCurrentUser, logout } = usersSlice.actions;
 
 export default usersSlice.reducer
