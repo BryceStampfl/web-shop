@@ -11,7 +11,7 @@ const ProductItem = (props) => {
             <Card.Body>
                 <Row>
                     <Col md={4}>
-                        <Card.Img variant="float" src={process.env.PUBLIC_URL + 'placeholder.png'} />
+                        <Card.Img variant="float" src={process.env.PUBLIC_URL + '/placeholder.png'} />
 
                     </Col>
                     <Col md={8}>
