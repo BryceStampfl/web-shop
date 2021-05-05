@@ -2,17 +2,88 @@ import React from 'react';
 
 import { Nav } from 'react-bootstrap'
 
+import SidebarLinksWithHeader from './SidebarLinksWithHeader';
+
+
 const Sidebar = () => {
 
+    const SIDEBAR_LINKS = [
+        {
+            linkHeader: "Header 1",
+            links: [
+                {
+                    linkTitle: "Link 1",
+                    path: "/app/productlist"
+                },
+                {
+                    linkTitle: "Link 2",
+                    path: "/app/productlist"
+                },
+                {
+                    linkTitle: "Link 3",
+                    path: "/app/productlist"
+                },
+                {
+                    linkTitle: "Link 4",
+                    path: "/app/productlist"
+                },
+            ]
+        },
+        {
+            linkHeader: "Header 2",
+            links: [
+                {
+                    linkTitle: "Link 1",
+                    path: "/app/productlist"
+                },
+                {
+                    linkTitle: "Link 2",
+                    path: "/app/productlist"
+                },
+                {
+                    linkTitle: "Link 3",
+                    path: "/app/productlist"
+                },
+                {
+                    linkTitle: "Link 4",
+                    path: "/app/productlist"
+                },
+            ]
+        },
+        {
+            linkHeader: "Header 3",
+            links: [
+                {
+                    linkTitle: "Link 1",
+                    path: "/app/productlist"
+                },
+                {
+                    linkTitle: "Link 2",
+                    path: "/app/productlist"
+                },
+                {
+                    linkTitle: "Link 3",
+                    path: "/app/productlist"
+                },
+                {
+                    linkTitle: "Link 4",
+                    path: "/app/productlist"
+                },
+            ]
+        },
 
+    ]
+
+
+    const renderedLinks = SIDEBAR_LINKS.map(groupLinks => (
+        <SidebarLinksWithHeader
+            header={groupLinks.linkHeader}
+            links={groupLinks.links} />
+    ))
 
     return (
         <Nav className="flex-column">
-                <Nav.Link>Link 1</Nav.Link>
-                <Nav.Link>Link 1</Nav.Link>
-                <Nav.Link>Link 1</Nav.Link>
-                <Nav.Link>Link 1</Nav.Link>
-                <Nav.Link>Link 1</Nav.Link>
+            {renderedLinks}
         </Nav>
     )
 
