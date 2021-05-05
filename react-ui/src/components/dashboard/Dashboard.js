@@ -1,11 +1,28 @@
 import React from 'react'
 
+import { Row, Col } from 'react-bootstrap'
+
+import ProductList from '../product/ProductList'
+import Sidebar from '../sidebar/Sidebar'
+
 
 
 const Dashboard = () => {
     
     return (
-        <h2>Dashboard template - Jwt auth success required to get here!</h2>
+        <div>
+        <Row>
+            <Col md={2}>
+                <Sidebar />
+            </Col>
+
+            <Col md={10}>
+                <ProductList />
+            </Col>
+        </Row>
+
+
+        </div>
     )
 }
 
