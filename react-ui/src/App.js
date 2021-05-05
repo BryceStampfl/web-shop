@@ -6,6 +6,7 @@ import RenderRoutes from "./components/routing/RenderRoutes";
 import CategoriesBar from "./components/header/CategoriesBar"
 
 function App() {
+
   return (
     <div className="App">
       <Header />

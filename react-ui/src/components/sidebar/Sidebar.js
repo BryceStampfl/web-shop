@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Nav } from 'react-bootstrap'
+import { Nav, Container } from 'react-bootstrap'
 
 import SidebarLinksWithHeader from './SidebarLinksWithHeader';
 
@@ -83,10 +83,11 @@ const Sidebar = () => {
 
     return (
         <Nav className="flex-column">
-            {renderedLinks}
+            <Container>
+                {renderedLinks}
+            </Container>
         </Nav>
     )
-
 }
 
 export default Sidebar;
