@@ -74,7 +74,6 @@ const Sidebar = () => {
 
     ]
 
-
     const renderedLinks = SIDEBAR_LINKS.map(groupLinks => (
         <SidebarLinksWithHeader
             header={groupLinks.linkHeader}

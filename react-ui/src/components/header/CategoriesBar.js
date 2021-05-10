@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { Nav, Navbar } from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
 
 
 const CategoriesBar = () => {
@@ -8,11 +9,13 @@ const CategoriesBar = () => {
 
 
     const renderedLinks = CATEGORIES.map(ele => (
-        <Nav.Link href="#">{ele}</Nav.Link>
+        <LinkContainer to={`/app/${ele}`}>
+            <Nav.Link >{ele}</Nav.Link>
+        </LinkContainer>
     ))
 
     return (
-        <Navbar bg="light" variant="dar">
+        <Navbar bg="light" variant="dark">
             {renderedLinks}
         </Navbar>
 

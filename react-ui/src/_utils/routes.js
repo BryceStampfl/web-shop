@@ -18,7 +18,7 @@ const ROUTES = [
         component: props => {
             if (!localStorage.getItem("jwtToken")) {
                 alert("You need to log in to access app routes");
-                return <Redirect to={"/login"} />;
+                return <Redirect to={"/"} />;
             }
             return <RenderRoutes {...props} />;
         },
@@ -28,11 +28,14 @@ const ROUTES = [
                 exact: true,
                 component: Dashboard,
             },
-            {
-                path: "/app/productlist",
-                exact: true,
-                component: ProductList,
-            },
+            { path: "/app/Clothing", exact: true, component: () => { return <Dashboard category="CLOTHING" /> } },
+            { path: "/app/Jewelry", exact: true, component: () => { return <Dashboard category="JEWELRY" /> } },
+            { path: "/app/Books", exact: true, component: () => { return <Dashboard category="BOOKS" /> } },
+            { path: "/app/Electronics", exact: true, component: () => { return <Dashboard category="ELECTRONICS" /> } },
+            { path: "/app/Beauty", exact: true, component: () => { return <Dashboard category="BEAUTY" /> } },
+            { path: "/app/Sports", exact: true, component: () => { return <Dashboard category="SPORTS" /> } },
+            { path: "/app/General", exact: true, component: () => { return <Dashboard category="GENERAL" /> } },
+
             {
                 path: "/app/addproduct",
                 exact: true,

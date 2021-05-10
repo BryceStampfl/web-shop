@@ -11,6 +11,9 @@ import { persistStore, persistReducer } from 'redux-persist'
 
 import { fetchProducts } from './_reducers/productsSlice'
 
+import './_styles/style.scss'
+
+
 //Fetch the list of products for app to display
 store.dispatch(fetchProducts())
 

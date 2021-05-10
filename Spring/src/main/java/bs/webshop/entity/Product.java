@@ -1,5 +1,8 @@
 package bs.webshop.entity;
 
+
+import bs.webshop.Category;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,15 +17,18 @@ public class Product {
     private String title;
     private double price;
     private String description;
+    private Category category;
+
   //  private String[] imageUrl;
 
 
     public Product(){}
 
-    public Product(String title, double price, String description) {
+    public Product(String title, double price, String description, Category category) {
         this.title = title;
         this.price = price;
         this.description = description;
+        this.category = category;
     }
 
     public long getId() {
@@ -55,5 +61,21 @@ public class Product {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

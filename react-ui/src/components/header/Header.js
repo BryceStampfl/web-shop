@@ -1,21 +1,35 @@
-import React from 'react'
-import { Navbar, Nav } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Navbar } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-
-
 import DropDownMenu from "./DropDownMenu"
+import { LinkContainer } from 'react-router-bootstrap'
+
 
 const Header = () => {
 
-    return (
-        <Navbar bg="light" expand="lg">
-            <Navbar.Brand href="#home">Web Shop</Navbar.Brand>
-            <DropDownMenu />
-            <Link to="/">Home</Link>
-            <Link to="/app/productlist"> /app/home </Link>
-            <Link to="/app/addproduct"> /app/page </Link>
+    const [search, setSearch] = useState('');
 
-        </Navbar>
+    const onSearchChanged = (e) => { setSearch(e.target.value); }
+    // We have to use to update the current state of the search
+    // or else it doesnt get the last input 
+    function getSearch() { return search; }
+
+    return (
+        <div className="header">
+                <Navbar bg="dark" expand="lg" >\
+                    <LinkContainer to="/">
+                        <Navbar.Brand>Web Shop</Navbar.Brand>
+                    </LinkContainer>
+
+                    <input 
+                    type="text" 
+                    id="searchBar" 
+                    value={getSearch()} 
+                    onChange={onSearchChanged} 
+                    placeholder="Search" />
+                    <DropDownMenu className="ml-auto" />
+                </Navbar>
+        </div>
     )
 
 }

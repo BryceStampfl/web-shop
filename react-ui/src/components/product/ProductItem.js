@@ -15,10 +15,10 @@ const ProductItem = (props) => {
 
                     </Col>
                     <Col md={8}>
-                        <Card.Title>{props.product.title}</Card.Title>
+                            <Card.Title className="text-center" >{props.product.title}</Card.Title>
 
-                        <Card.Text>{props.product.description}</Card.Text>
-                        <Card.Subtitle>{props.product.price}</Card.Subtitle>
+                            <Card.Text>{props.product.description}</Card.Text>
+                            <Card.Subtitle>{props.product.price}</Card.Subtitle>
                     </Col>
                 </Row>
             </Card.Body>
