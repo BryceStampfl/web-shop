@@ -16,10 +16,10 @@ const DropDownMenu = () => {
     return (
         <NavDropdown
             title="Dropdown"
+            className="ml-auto"
             onMouseEnter={() => setMenuOpen(true)}
             onMouseLeave={() => setMenuOpen(false)}
             show={menuOpen}
-            alignRight={true}
         >
             {dropDownMenuItemList}
         </NavDropdown>

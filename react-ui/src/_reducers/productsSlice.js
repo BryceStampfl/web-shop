@@ -18,11 +18,7 @@ const productsSlice = createSlice({
     reducers: {
         addProduct: (state, action) => {
             state.push(action.payload)
-        },
-        selectProductById: (state, action) => {
-            state.find(product => product.id === action.payload)
-        },
-        selectAllProducts: state => state.products
+        }
     },
     extraReducers: {
         [fetchProducts.fulfilled]: (state, action) => {

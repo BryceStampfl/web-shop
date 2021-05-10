@@ -8,12 +8,11 @@ import CategoriesBar from "./components/header/CategoriesBar"
 function App() {
 
   return (
-    <div className="App">
+    <div id="App" style={{backgroundColor: "rgb(248,249,250)"}}>
       <Header />
       <CategoriesBar />
       <RenderRoutes routes={ROUTES} />
     </div>
-
   );
 }
 
