@@ -5,11 +5,11 @@ import { LinkContainer } from 'react-router-bootstrap'
 
 
 const CategoriesBar = () => {
-    const CATEGORIES = ["Clothing", "Jewelry", "Books", "Electronics", "Beauty", "Sports", "General"]
+    const CATEGORIES = ["General", "Clothing", "Jewelry", "Books", "Electronics", "Beauty", "Sports"]
 
 
     const renderedLinks = CATEGORIES.map(ele => (
-        <LinkContainer to={`/app/${ele}`}>
+        <LinkContainer to={`/app/categories/${ele}`}>
             <Nav.Link >{ele}</Nav.Link>
         </LinkContainer>
     ))

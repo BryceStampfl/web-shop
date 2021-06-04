@@ -11,7 +11,8 @@ const ProductList = ({ category }) => {
     const products = filterProducts(category, useSelector(state => state.reducer.products));
 
     const renderedProducts = products.map(item => (
-        <ProductItem key={item.title} product={item} />
+        <ProductItem key={item.title} product={item}
+        />
     ))
 
     return (

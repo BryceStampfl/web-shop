@@ -5,9 +5,9 @@ import Login from '../components/landing/Login';
 import Register from '../components/landing/Register';
 import Landing from '../components/landing/Landing'
 import RenderRoutes from '../components/routing/RenderRoutes'
-import ProductList from '../components/product/ProductList'
 import addProduct from '../components/product/AddProduct'
 import Dashboard from '../components/dashboard/Dashboard'
+import ProductPage from '../components/product/ProductPage'
 
 const ROUTES = [
     { path: ["/"], exact: true, component: Landing },
@@ -28,13 +28,20 @@ const ROUTES = [
                 exact: true,
                 component: Dashboard,
             },
-            { path: "/app/Clothing", exact: true, component: () => { return <Dashboard category="CLOTHING" /> } },
-            { path: "/app/Jewelry", exact: true, component: () => { return <Dashboard category="JEWELRY" /> } },
-            { path: "/app/Books", exact: true, component: () => { return <Dashboard category="BOOKS" /> } },
-            { path: "/app/Electronics", exact: true, component: () => { return <Dashboard category="ELECTRONICS" /> } },
-            { path: "/app/Beauty", exact: true, component: () => { return <Dashboard category="BEAUTY" /> } },
-            { path: "/app/Sports", exact: true, component: () => { return <Dashboard category="SPORTS" /> } },
-            { path: "/app/General", exact: true, component: () => { return <Dashboard category="GENERAL" /> } },
+            {
+                path: "/app/product/",
+                exact: false,
+                component: () => {
+                    return <ProductPage /> 
+                }
+            },
+            { path: "/app/categories/clothing", exact: true, component: () => { return <Dashboard category="CLOTHING" /> } },
+            { path: "/app/categories/jewelry", exact: true, component: () => { return <Dashboard category="JEWELRY" /> } },
+            { path: "/app/categories/books", exact: true, component: () => { return <Dashboard category="BOOKS" /> } },
+            { path: "/app/categories/electronics", exact: true, component: () => { return <Dashboard category="ELECTRONICS" /> } },
+            { path: "/app/categories/beauty", exact: true, component: () => { return <Dashboard category="BEAUTY" /> } },
+            { path: "/app/categories/sports", exact: true, component: () => { return <Dashboard category="SPORTS" /> } },
+            { path: "/app/categories/general", exact: true, component: () => { return <Dashboard category="GENERAL" /> } },
 
             {
                 path: "/app/addproduct",
